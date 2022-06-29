@@ -56,18 +56,23 @@ async function handleComplete(todo) {
 async function handleEdit(todo, task) {
     // ***
     // 1. Set the todo description to the new task text
-    todo
+    todo.description = task;
     // 2. Get the index of the current todo
+    const index = todos.indexOf(todo);
     // 3. Update that index of the array with the result of the update service function
-
+    todos[index] = await updateTodo(todo);
     display();
 }
 
 async function handleDelete(todo) {
     // ***
     // 1. Get the index of the current todo
+    const index = todos.indexOf(todo);
+    if (index === -1) return;
     // 2. Call the delete service function
+    await deleteTodo(todo);
     // 3. remove the todo from the todos array using splice
+    todos.splice(index, 1);
 
     display();
 }
