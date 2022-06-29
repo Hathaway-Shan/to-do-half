@@ -11,11 +11,11 @@ let todos = [];
 
 // Action Handlers
 async function handlePageLoad() {
-    user = getUser();
+    user = await getUser();
     protectPage(user);
 
     // *** set todos state from get all service function
-
+    todos = await getAllTodos();
     display();
 }
 
